@@ -8,6 +8,7 @@
 import UIKit
 
 final class MainViewController: UIViewController, ObserverProtocol {
+    weak var delegate: ObserverBackProtocol?
     
     let incrementButton = UIButton()
     
@@ -132,12 +133,14 @@ final class MainViewController: UIViewController, ObserverProtocol {
     private func setupMenuButtons() {
         let colorsButton = makeMenuButton(title: "🎨")
         colorsButton.addTarget(self, action: #selector(colorsButtonPressed(_:)), for: .touchUpInside)
+        let randomColorBackground = makeMenuButton(title: "random🎨")
+        randomColorBackground.addTarget(self, action: #selector(randomColorPressed(_:)), for: .touchUpInside)
         let notesButton = makeMenuButton(title: "📝")
         notesButton.addTarget(self, action: #selector(notesButtonPressed(_:)), for: .touchUpInside)
         let newsButton = makeMenuButton(title: "📰")
         newsButton.addTarget(self, action: #selector(newsButtonPressed(_:)), for: .touchUpInside)
          
-        buttonsSV = UIStackView(arrangedSubviews: [colorsButton, notesButton, newsButton])
+        buttonsSV = UIStackView(arrangedSubviews: [colorsButton, randomColorBackground, notesButton, newsButton])
         buttonsSV.spacing = 12
         buttonsSV.axis = .horizontal
         buttonsSV.distribution = .fillEqually
@@ -156,6 +159,7 @@ final class MainViewController: UIViewController, ObserverProtocol {
         colorPaletteView.pinBottom(to: buttonsSV.topAnchor, 8)
         
         colorPaletteView.delegate = self
+        delegate = colorPaletteView
     }
     
     private func updateUI() {
@@ -170,6 +174,13 @@ final class MainViewController: UIViewController, ObserverProtocol {
                        options: .transitionCrossDissolve,
                           animations: { [weak self] in self?.commentLabel.text = self?.updateCommentView(value: self?.value ?? 0) },
                     completion: nil)
+    }
+    
+    
+    func changeColor(_ slider: ColorPaletteView) {
+        UIView.animate(withDuration: 0.5) {
+            self.view.backgroundColor = slider.chosenColor
+        }
     }
     
     
@@ -188,14 +199,22 @@ final class MainViewController: UIViewController, ObserverProtocol {
     @objc
     private func colorsButtonPressed(_ sender: UIButton) {
         colorPaletteView.isHidden.toggle()
+        delegate?.setSliders(view.backgroundColor ?? .black)
         colorPaletteView.applyHapticResponse()
     }
     
-    func changeColor(_ slider: ColorPaletteView) {
+    @objc
+    private func randomColorPressed(_ sender: UIButton) {
         UIView.animate(withDuration: 0.5) {
-            self.view.backgroundColor = slider.chosenColor
+            self.view.backgroundColor = UIColor(red: .random(in: 0...1),
+                                           green: .random(in: 0...1),
+                                           blue: .random(in: 0...1),
+                                           alpha: 1)
+            self.delegate?.setSliders(self.view.backgroundColor ?? .black)
         }
+       
     }
+    
     
     @objc
     private func notesButtonPressed(_ sender: UIButton) {

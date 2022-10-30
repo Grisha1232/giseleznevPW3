@@ -7,7 +7,8 @@
 
 import UIKit
 
-final class ColorPaletteView: UIControl {
+final class ColorPaletteView: UIControl, ObserverBackProtocol {
+    
     weak var delegate: ObserverProtocol?
     private let stackView = UIStackView()
     private(set) var chosenColor: UIColor = .systemGray6
@@ -43,6 +44,20 @@ final class ColorPaletteView: UIControl {
         
         addSubview(stackView)
         stackView.pin(to: self, [.top, .left, .right, .bottom])
+    }
+    
+    
+    func setSliders(_ color: UIColor) {
+        self.chosenColor = color
+        stackView.subviews.forEach {
+            if ($0.tag == 0) {
+                ($0 as! ColorSliderView).setupSlider(Float(chosenColor.redComponent))
+            } else if ($0.tag == 1) {
+                ($0 as! ColorSliderView).setupSlider(Float(chosenColor.greenComponent))
+            } else {
+                ($0 as! ColorSliderView).setupSlider(Float(chosenColor.blueComponent))
+            }
+        }
     }
     
     @objc

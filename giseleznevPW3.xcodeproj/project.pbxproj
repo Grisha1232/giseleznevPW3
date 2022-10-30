@@ -19,6 +19,7 @@
 		C379E3A3290D3CA90046798D /* ColorPaletteViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379E3A2290D3CA90046798D /* ColorPaletteViewExtension.swift */; };
 		C379E3A6290D44690046798D /* UIColor+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379E3A5290D44690046798D /* UIColor+Components.swift */; };
 		C379E3AD290D55790046798D /* ObserverChangedSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379E3AC290D55790046798D /* ObserverChangedSlider.swift */; };
+		C379E3AF290EEA290046798D /* ObserverBackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379E3AE290EEA290046798D /* ObserverBackgroundColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		C379E3A2290D3CA90046798D /* ColorPaletteViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPaletteViewExtension.swift; sourceTree = "<group>"; };
 		C379E3A5290D44690046798D /* UIColor+Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Components.swift"; sourceTree = "<group>"; };
 		C379E3AC290D55790046798D /* ObserverChangedSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverChangedSlider.swift; sourceTree = "<group>"; };
+		C379E3AE290EEA290046798D /* ObserverBackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverBackgroundColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				C379E3AC290D55790046798D /* ObserverChangedSlider.swift */,
+				C379E3AE290EEA290046798D /* ObserverBackgroundColor.swift */,
 			);
 			path = Observer;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 			files = (
 				C379E3A3290D3CA90046798D /* ColorPaletteViewExtension.swift in Sources */,
 				C379E39C290D2D100046798D /* UIButton+shadows.swift in Sources */,
+				C379E3AF290EEA290046798D /* ObserverBackgroundColor.swift in Sources */,
 				C379E3A6290D44690046798D /* UIColor+Components.swift in Sources */,
 				C379E388290D2C2E0046798D /* MainViewController.swift in Sources */,
 				C379E39F290D2DF40046798D /* ColorPaletteView.swift in Sources */,

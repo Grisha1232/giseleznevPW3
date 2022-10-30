@@ -45,6 +45,10 @@ extension ColorPaletteView {
             stackView.pin(to: self, [.left: 12, .top: 12, .right: 12, .bottom: 12])
         }
         
+        internal func setupSlider(_ value: Float) {
+            slider.value = value
+        }
+        
         @objc
         private func sliderMoved(_ slider: UISlider) {
             self.value = slider.value
